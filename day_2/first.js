@@ -6,8 +6,6 @@ const input = fs
   .split("\n")
   .map((line) => line.split(" "));
 
-let score = 0;
-
 const moves = {
   opponentRock: { letter: "A", value: 1 },
   opponentPaper: { letter: "B", value: 2 },
@@ -17,19 +15,19 @@ const moves = {
   playerScissor: { letter: "Z", value: 3 },
 };
 
+let score = 0;
+
 for (let i = 0; i < input.length; i++) {
   const element = input[i];
   const opponentMove = element[0];
   const playerMove = element[1];
 
-  let subtotal = 0;
-
   if (playerMove === moves.playerRock.letter) {
-    subtotal += moves.playerRock.value;
+    score += moves.playerRock.value;
   } else if (playerMove === moves.playerPaper.letter) {
-    subtotal += moves.playerPaper.value;
+    score += moves.playerPaper.value;
   } else {
-    subtotal += moves.playerScissor.value;
+    score += moves.playerScissor.value;
   }
 
   if (
@@ -40,7 +38,7 @@ for (let i = 0; i < input.length; i++) {
     (opponentMove === moves.opponentScissor.letter &&
       playerMove === moves.playerRock.letter)
   ) {
-    subtotal += 6;
+    score += 6;
   } else if (
     (opponentMove === moves.opponentPaper.letter &&
       playerMove === moves.playerRock.letter) ||
@@ -49,12 +47,10 @@ for (let i = 0; i < input.length; i++) {
     (opponentMove === moves.opponentRock.letter &&
       playerMove === moves.playerScissor.letter)
   ) {
-    subtotal += 0;
+    score += 0;
   } else {
-    subtotal += 3;
+    score += 3;
   }
-
-  score += subtotal;
 }
 
 console.log("final score:", score);
