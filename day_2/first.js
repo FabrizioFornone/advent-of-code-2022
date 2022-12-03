@@ -17,10 +17,8 @@ const moves = {
 
 let score = 0;
 
-for (let i = 0; i < input.length; i++) {
-  const element = input[i];
-  const opponentMove = element[0];
-  const playerMove = element[1];
+input.forEach((element) => {
+  const [opponentMove, playerMove] = element;
 
   if (playerMove === moves.playerRock.letter) {
     score += moves.playerRock.value;
@@ -51,6 +49,6 @@ for (let i = 0; i < input.length; i++) {
   } else {
     score += 3;
   }
-}
+});
 
 console.log("final score:", score);
